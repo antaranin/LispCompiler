@@ -1,0 +1,2661 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> exp
+Rule 2     exp -> definition
+Rule 3     exp -> value_exp
+Rule 4     exp -> if_stmt
+Rule 5     exp -> log_exp
+Rule 6     exp -> print_exp
+Rule 7     exp -> exp exp
+Rule 8     print_exp -> LPAREN PRINT exp RPAREN
+Rule 9     read_exp -> READ
+Rule 10    number -> NUM
+Rule 11    log_val -> TRUE
+Rule 12    log_val -> FALSE
+Rule 13    identifier -> IDENTIFIER
+Rule 14    definition -> LPAREN DEFINE identifier value_exp RPAREN
+Rule 15    definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+Rule 16    arguments -> declaration arguments
+Rule 17    arguments -> <empty>
+Rule 18    declaration -> identifier
+Rule 19    if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+Rule 20    if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+Rule 21    log_exp -> value
+Rule 22    log_exp -> value_exp
+Rule 23    log_exp -> LPAREN log_operator log_exp log_args RPAREN
+Rule 24    log_args -> log_exp log_args
+Rule 25    log_args -> log_exp
+Rule 26    log_args -> <empty>
+Rule 27    log_operator -> AND
+Rule 28    log_operator -> OR
+Rule 29    log_operator -> NOT
+Rule 30    log_operator -> EQUAL
+Rule 31    log_operator -> GT
+Rule 32    log_operator -> LT
+Rule 33    value_exp -> LPAREN operator value_exp args RPAREN
+Rule 34    value_exp -> func_exp
+Rule 35    func_exp -> LPAREN function args RPAREN
+Rule 36    function -> identifier
+Rule 37    args -> value_exp args
+Rule 38    args -> value_exp
+Rule 39    args -> <empty>
+Rule 40    value_exp -> value
+Rule 41    value -> identifier
+Rule 42    value -> NIL
+Rule 43    value -> number
+Rule 44    value -> log_val
+Rule 45    value -> list
+Rule 46    value -> list_car
+Rule 47    value -> read_exp
+Rule 48    list_car -> LPAREN CAR identifier RPAREN
+Rule 49    list_car -> LPAREN CAR list RPAREN
+Rule 50    list_car -> LPAREN CAR list_car RPAREN
+Rule 51    list -> LPAREN CDR identifier RPAREN
+Rule 52    list -> LPAREN CDR list RPAREN
+Rule 53    list -> LPAREN CONS args RPAREN
+Rule 54    list -> STRING
+Rule 55    operator -> PLUS
+Rule 56    operator -> MINUS
+Rule 57    operator -> DIVIDE
+Rule 58    operator -> MULTIPLY
+Rule 59    operator -> MOD
+
+Terminals, with rules where they appear
+
+AND                  : 27
+CAR                  : 48 49 50
+CDR                  : 51 52
+CONS                 : 53
+DEFINE               : 14 15
+DIVIDE               : 57
+EQUAL                : 30
+FALSE                : 12
+GT                   : 31
+IDENTIFIER           : 13
+IF                   : 19 20
+LPAREN               : 8 14 15 15 15 19 19 20 20 20 23 33 35 48 49 50 51 52 53
+LT                   : 32
+MINUS                : 56
+MOD                  : 59
+MULTIPLY             : 58
+NIL                  : 42
+NOT                  : 29
+NUM                  : 10
+OR                   : 28
+PLUS                 : 55
+PRINT                : 8
+READ                 : 9
+RPAREN               : 8 14 15 15 15 19 19 20 20 20 23 33 35 48 49 50 51 52 53
+STRING               : 54
+TRUE                 : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 33 35 37 53
+arguments            : 15 16
+declaration          : 16
+definition           : 2
+exp                  : 1 7 7 8 15 19 20 20
+func_exp             : 34
+function             : 35
+identifier           : 14 15 18 36 41 48 51
+if_stmt              : 4
+list                 : 45 49 52
+list_car             : 46 50
+log_args             : 23 24
+log_exp              : 5 19 20 23 24 25
+log_operator         : 23
+log_val              : 44
+number               : 43
+operator             : 33
+print_exp            : 6
+program              : 0
+read_exp             : 47
+value                : 21 40
+value_exp            : 3 14 22 33 37 38
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    program                        shift and go to state 1
+    exp                            shift and go to state 2
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> exp .
+    (7) exp -> exp . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    $end            reduce using rule 1 (program -> exp .)
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    exp                            shift and go to state 24
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 3
+
+    (2) exp -> definition .
+
+    LPAREN          reduce using rule 2 (exp -> definition .)
+    NIL             reduce using rule 2 (exp -> definition .)
+    IDENTIFIER      reduce using rule 2 (exp -> definition .)
+    NUM             reduce using rule 2 (exp -> definition .)
+    TRUE            reduce using rule 2 (exp -> definition .)
+    FALSE           reduce using rule 2 (exp -> definition .)
+    STRING          reduce using rule 2 (exp -> definition .)
+    READ            reduce using rule 2 (exp -> definition .)
+    $end            reduce using rule 2 (exp -> definition .)
+    RPAREN          reduce using rule 2 (exp -> definition .)
+
+
+state 4
+
+    (3) exp -> value_exp .
+    (22) log_exp -> value_exp .
+
+  ! reduce/reduce conflict for LPAREN resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for NIL resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for IDENTIFIER resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for NUM resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for TRUE resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for FALSE resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for STRING resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for READ resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for $end resolved using rule 3 (exp -> value_exp .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 3 (exp -> value_exp .)
+    LPAREN          reduce using rule 3 (exp -> value_exp .)
+    NIL             reduce using rule 3 (exp -> value_exp .)
+    IDENTIFIER      reduce using rule 3 (exp -> value_exp .)
+    NUM             reduce using rule 3 (exp -> value_exp .)
+    TRUE            reduce using rule 3 (exp -> value_exp .)
+    FALSE           reduce using rule 3 (exp -> value_exp .)
+    STRING          reduce using rule 3 (exp -> value_exp .)
+    READ            reduce using rule 3 (exp -> value_exp .)
+    $end            reduce using rule 3 (exp -> value_exp .)
+    RPAREN          reduce using rule 3 (exp -> value_exp .)
+
+  ! LPAREN          [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! NIL             [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! IDENTIFIER      [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! NUM             [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! TRUE            [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! FALSE           [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! STRING          [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! READ            [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! $end            [ reduce using rule 22 (log_exp -> value_exp .) ]
+  ! RPAREN          [ reduce using rule 22 (log_exp -> value_exp .) ]
+
+
+state 5
+
+    (4) exp -> if_stmt .
+
+    LPAREN          reduce using rule 4 (exp -> if_stmt .)
+    NIL             reduce using rule 4 (exp -> if_stmt .)
+    IDENTIFIER      reduce using rule 4 (exp -> if_stmt .)
+    NUM             reduce using rule 4 (exp -> if_stmt .)
+    TRUE            reduce using rule 4 (exp -> if_stmt .)
+    FALSE           reduce using rule 4 (exp -> if_stmt .)
+    STRING          reduce using rule 4 (exp -> if_stmt .)
+    READ            reduce using rule 4 (exp -> if_stmt .)
+    $end            reduce using rule 4 (exp -> if_stmt .)
+    RPAREN          reduce using rule 4 (exp -> if_stmt .)
+
+
+state 6
+
+    (5) exp -> log_exp .
+
+    LPAREN          reduce using rule 5 (exp -> log_exp .)
+    NIL             reduce using rule 5 (exp -> log_exp .)
+    IDENTIFIER      reduce using rule 5 (exp -> log_exp .)
+    NUM             reduce using rule 5 (exp -> log_exp .)
+    TRUE            reduce using rule 5 (exp -> log_exp .)
+    FALSE           reduce using rule 5 (exp -> log_exp .)
+    STRING          reduce using rule 5 (exp -> log_exp .)
+    READ            reduce using rule 5 (exp -> log_exp .)
+    $end            reduce using rule 5 (exp -> log_exp .)
+    RPAREN          reduce using rule 5 (exp -> log_exp .)
+
+
+state 7
+
+    (6) exp -> print_exp .
+
+    LPAREN          reduce using rule 6 (exp -> print_exp .)
+    NIL             reduce using rule 6 (exp -> print_exp .)
+    IDENTIFIER      reduce using rule 6 (exp -> print_exp .)
+    NUM             reduce using rule 6 (exp -> print_exp .)
+    TRUE            reduce using rule 6 (exp -> print_exp .)
+    FALSE           reduce using rule 6 (exp -> print_exp .)
+    STRING          reduce using rule 6 (exp -> print_exp .)
+    READ            reduce using rule 6 (exp -> print_exp .)
+    $end            reduce using rule 6 (exp -> print_exp .)
+    RPAREN          reduce using rule 6 (exp -> print_exp .)
+
+
+state 8
+
+    (14) definition -> LPAREN . DEFINE identifier value_exp RPAREN
+    (15) definition -> LPAREN . DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> LPAREN . operator value_exp args RPAREN
+    (19) if_stmt -> LPAREN . IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> LPAREN . IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (23) log_exp -> LPAREN . log_operator log_exp log_args RPAREN
+    (8) print_exp -> LPAREN . PRINT exp RPAREN
+    (35) func_exp -> LPAREN . function args RPAREN
+    (51) list -> LPAREN . CDR identifier RPAREN
+    (52) list -> LPAREN . CDR list RPAREN
+    (53) list -> LPAREN . CONS args RPAREN
+    (48) list_car -> LPAREN . CAR identifier RPAREN
+    (49) list_car -> LPAREN . CAR list RPAREN
+    (50) list_car -> LPAREN . CAR list_car RPAREN
+    (55) operator -> . PLUS
+    (56) operator -> . MINUS
+    (57) operator -> . DIVIDE
+    (58) operator -> . MULTIPLY
+    (59) operator -> . MOD
+    (27) log_operator -> . AND
+    (28) log_operator -> . OR
+    (29) log_operator -> . NOT
+    (30) log_operator -> . EQUAL
+    (31) log_operator -> . GT
+    (32) log_operator -> . LT
+    (36) function -> . identifier
+    (13) identifier -> . IDENTIFIER
+
+    DEFINE          shift and go to state 25
+    IF              shift and go to state 28
+    PRINT           shift and go to state 30
+    CDR             shift and go to state 32
+    CONS            shift and go to state 33
+    CAR             shift and go to state 34
+    PLUS            shift and go to state 35
+    MINUS           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MULTIPLY        shift and go to state 38
+    MOD             shift and go to state 39
+    AND             shift and go to state 40
+    OR              shift and go to state 41
+    NOT             shift and go to state 42
+    EQUAL           shift and go to state 43
+    GT              shift and go to state 44
+    LT              shift and go to state 45
+    IDENTIFIER      shift and go to state 18
+
+    identifier                     shift and go to state 26
+    operator                       shift and go to state 27
+    log_operator                   shift and go to state 29
+    function                       shift and go to state 31
+
+state 9
+
+    (41) value -> identifier .
+
+    LPAREN          reduce using rule 41 (value -> identifier .)
+    NIL             reduce using rule 41 (value -> identifier .)
+    IDENTIFIER      reduce using rule 41 (value -> identifier .)
+    NUM             reduce using rule 41 (value -> identifier .)
+    TRUE            reduce using rule 41 (value -> identifier .)
+    FALSE           reduce using rule 41 (value -> identifier .)
+    STRING          reduce using rule 41 (value -> identifier .)
+    READ            reduce using rule 41 (value -> identifier .)
+    $end            reduce using rule 41 (value -> identifier .)
+    RPAREN          reduce using rule 41 (value -> identifier .)
+
+
+state 10
+
+    (34) value_exp -> func_exp .
+
+    LPAREN          reduce using rule 34 (value_exp -> func_exp .)
+    NIL             reduce using rule 34 (value_exp -> func_exp .)
+    IDENTIFIER      reduce using rule 34 (value_exp -> func_exp .)
+    NUM             reduce using rule 34 (value_exp -> func_exp .)
+    TRUE            reduce using rule 34 (value_exp -> func_exp .)
+    FALSE           reduce using rule 34 (value_exp -> func_exp .)
+    STRING          reduce using rule 34 (value_exp -> func_exp .)
+    READ            reduce using rule 34 (value_exp -> func_exp .)
+    $end            reduce using rule 34 (value_exp -> func_exp .)
+    RPAREN          reduce using rule 34 (value_exp -> func_exp .)
+
+
+state 11
+
+    (40) value_exp -> value .
+    (21) log_exp -> value .
+
+  ! reduce/reduce conflict for LPAREN resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for NIL resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for IDENTIFIER resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for NUM resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for TRUE resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for FALSE resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for STRING resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for READ resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for $end resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 21 (log_exp -> value .)
+    LPAREN          reduce using rule 21 (log_exp -> value .)
+    NIL             reduce using rule 21 (log_exp -> value .)
+    IDENTIFIER      reduce using rule 21 (log_exp -> value .)
+    NUM             reduce using rule 21 (log_exp -> value .)
+    TRUE            reduce using rule 21 (log_exp -> value .)
+    FALSE           reduce using rule 21 (log_exp -> value .)
+    STRING          reduce using rule 21 (log_exp -> value .)
+    READ            reduce using rule 21 (log_exp -> value .)
+    $end            reduce using rule 21 (log_exp -> value .)
+    RPAREN          reduce using rule 21 (log_exp -> value .)
+
+  ! LPAREN          [ reduce using rule 40 (value_exp -> value .) ]
+  ! NIL             [ reduce using rule 40 (value_exp -> value .) ]
+  ! IDENTIFIER      [ reduce using rule 40 (value_exp -> value .) ]
+  ! NUM             [ reduce using rule 40 (value_exp -> value .) ]
+  ! TRUE            [ reduce using rule 40 (value_exp -> value .) ]
+  ! FALSE           [ reduce using rule 40 (value_exp -> value .) ]
+  ! STRING          [ reduce using rule 40 (value_exp -> value .) ]
+  ! READ            [ reduce using rule 40 (value_exp -> value .) ]
+  ! $end            [ reduce using rule 40 (value_exp -> value .) ]
+  ! RPAREN          [ reduce using rule 40 (value_exp -> value .) ]
+
+
+state 12
+
+    (42) value -> NIL .
+
+    LPAREN          reduce using rule 42 (value -> NIL .)
+    NIL             reduce using rule 42 (value -> NIL .)
+    IDENTIFIER      reduce using rule 42 (value -> NIL .)
+    NUM             reduce using rule 42 (value -> NIL .)
+    TRUE            reduce using rule 42 (value -> NIL .)
+    FALSE           reduce using rule 42 (value -> NIL .)
+    STRING          reduce using rule 42 (value -> NIL .)
+    READ            reduce using rule 42 (value -> NIL .)
+    $end            reduce using rule 42 (value -> NIL .)
+    RPAREN          reduce using rule 42 (value -> NIL .)
+
+
+state 13
+
+    (43) value -> number .
+
+    LPAREN          reduce using rule 43 (value -> number .)
+    NIL             reduce using rule 43 (value -> number .)
+    IDENTIFIER      reduce using rule 43 (value -> number .)
+    NUM             reduce using rule 43 (value -> number .)
+    TRUE            reduce using rule 43 (value -> number .)
+    FALSE           reduce using rule 43 (value -> number .)
+    STRING          reduce using rule 43 (value -> number .)
+    READ            reduce using rule 43 (value -> number .)
+    $end            reduce using rule 43 (value -> number .)
+    RPAREN          reduce using rule 43 (value -> number .)
+
+
+state 14
+
+    (44) value -> log_val .
+
+    LPAREN          reduce using rule 44 (value -> log_val .)
+    NIL             reduce using rule 44 (value -> log_val .)
+    IDENTIFIER      reduce using rule 44 (value -> log_val .)
+    NUM             reduce using rule 44 (value -> log_val .)
+    TRUE            reduce using rule 44 (value -> log_val .)
+    FALSE           reduce using rule 44 (value -> log_val .)
+    STRING          reduce using rule 44 (value -> log_val .)
+    READ            reduce using rule 44 (value -> log_val .)
+    $end            reduce using rule 44 (value -> log_val .)
+    RPAREN          reduce using rule 44 (value -> log_val .)
+
+
+state 15
+
+    (45) value -> list .
+
+    LPAREN          reduce using rule 45 (value -> list .)
+    NIL             reduce using rule 45 (value -> list .)
+    IDENTIFIER      reduce using rule 45 (value -> list .)
+    NUM             reduce using rule 45 (value -> list .)
+    TRUE            reduce using rule 45 (value -> list .)
+    FALSE           reduce using rule 45 (value -> list .)
+    STRING          reduce using rule 45 (value -> list .)
+    READ            reduce using rule 45 (value -> list .)
+    $end            reduce using rule 45 (value -> list .)
+    RPAREN          reduce using rule 45 (value -> list .)
+
+
+state 16
+
+    (46) value -> list_car .
+
+    LPAREN          reduce using rule 46 (value -> list_car .)
+    NIL             reduce using rule 46 (value -> list_car .)
+    IDENTIFIER      reduce using rule 46 (value -> list_car .)
+    NUM             reduce using rule 46 (value -> list_car .)
+    TRUE            reduce using rule 46 (value -> list_car .)
+    FALSE           reduce using rule 46 (value -> list_car .)
+    STRING          reduce using rule 46 (value -> list_car .)
+    READ            reduce using rule 46 (value -> list_car .)
+    $end            reduce using rule 46 (value -> list_car .)
+    RPAREN          reduce using rule 46 (value -> list_car .)
+
+
+state 17
+
+    (47) value -> read_exp .
+
+    LPAREN          reduce using rule 47 (value -> read_exp .)
+    NIL             reduce using rule 47 (value -> read_exp .)
+    IDENTIFIER      reduce using rule 47 (value -> read_exp .)
+    NUM             reduce using rule 47 (value -> read_exp .)
+    TRUE            reduce using rule 47 (value -> read_exp .)
+    FALSE           reduce using rule 47 (value -> read_exp .)
+    STRING          reduce using rule 47 (value -> read_exp .)
+    READ            reduce using rule 47 (value -> read_exp .)
+    $end            reduce using rule 47 (value -> read_exp .)
+    RPAREN          reduce using rule 47 (value -> read_exp .)
+
+
+state 18
+
+    (13) identifier -> IDENTIFIER .
+
+    LPAREN          reduce using rule 13 (identifier -> IDENTIFIER .)
+    NIL             reduce using rule 13 (identifier -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 13 (identifier -> IDENTIFIER .)
+    NUM             reduce using rule 13 (identifier -> IDENTIFIER .)
+    TRUE            reduce using rule 13 (identifier -> IDENTIFIER .)
+    FALSE           reduce using rule 13 (identifier -> IDENTIFIER .)
+    STRING          reduce using rule 13 (identifier -> IDENTIFIER .)
+    READ            reduce using rule 13 (identifier -> IDENTIFIER .)
+    $end            reduce using rule 13 (identifier -> IDENTIFIER .)
+    RPAREN          reduce using rule 13 (identifier -> IDENTIFIER .)
+
+
+state 19
+
+    (10) number -> NUM .
+
+    LPAREN          reduce using rule 10 (number -> NUM .)
+    NIL             reduce using rule 10 (number -> NUM .)
+    IDENTIFIER      reduce using rule 10 (number -> NUM .)
+    NUM             reduce using rule 10 (number -> NUM .)
+    TRUE            reduce using rule 10 (number -> NUM .)
+    FALSE           reduce using rule 10 (number -> NUM .)
+    STRING          reduce using rule 10 (number -> NUM .)
+    READ            reduce using rule 10 (number -> NUM .)
+    $end            reduce using rule 10 (number -> NUM .)
+    RPAREN          reduce using rule 10 (number -> NUM .)
+
+
+state 20
+
+    (11) log_val -> TRUE .
+
+    LPAREN          reduce using rule 11 (log_val -> TRUE .)
+    NIL             reduce using rule 11 (log_val -> TRUE .)
+    IDENTIFIER      reduce using rule 11 (log_val -> TRUE .)
+    NUM             reduce using rule 11 (log_val -> TRUE .)
+    TRUE            reduce using rule 11 (log_val -> TRUE .)
+    FALSE           reduce using rule 11 (log_val -> TRUE .)
+    STRING          reduce using rule 11 (log_val -> TRUE .)
+    READ            reduce using rule 11 (log_val -> TRUE .)
+    $end            reduce using rule 11 (log_val -> TRUE .)
+    RPAREN          reduce using rule 11 (log_val -> TRUE .)
+
+
+state 21
+
+    (12) log_val -> FALSE .
+
+    LPAREN          reduce using rule 12 (log_val -> FALSE .)
+    NIL             reduce using rule 12 (log_val -> FALSE .)
+    IDENTIFIER      reduce using rule 12 (log_val -> FALSE .)
+    NUM             reduce using rule 12 (log_val -> FALSE .)
+    TRUE            reduce using rule 12 (log_val -> FALSE .)
+    FALSE           reduce using rule 12 (log_val -> FALSE .)
+    STRING          reduce using rule 12 (log_val -> FALSE .)
+    READ            reduce using rule 12 (log_val -> FALSE .)
+    $end            reduce using rule 12 (log_val -> FALSE .)
+    RPAREN          reduce using rule 12 (log_val -> FALSE .)
+
+
+state 22
+
+    (54) list -> STRING .
+
+    LPAREN          reduce using rule 54 (list -> STRING .)
+    NIL             reduce using rule 54 (list -> STRING .)
+    IDENTIFIER      reduce using rule 54 (list -> STRING .)
+    NUM             reduce using rule 54 (list -> STRING .)
+    TRUE            reduce using rule 54 (list -> STRING .)
+    FALSE           reduce using rule 54 (list -> STRING .)
+    STRING          reduce using rule 54 (list -> STRING .)
+    READ            reduce using rule 54 (list -> STRING .)
+    $end            reduce using rule 54 (list -> STRING .)
+    RPAREN          reduce using rule 54 (list -> STRING .)
+
+
+state 23
+
+    (9) read_exp -> READ .
+
+    LPAREN          reduce using rule 9 (read_exp -> READ .)
+    NIL             reduce using rule 9 (read_exp -> READ .)
+    IDENTIFIER      reduce using rule 9 (read_exp -> READ .)
+    NUM             reduce using rule 9 (read_exp -> READ .)
+    TRUE            reduce using rule 9 (read_exp -> READ .)
+    FALSE           reduce using rule 9 (read_exp -> READ .)
+    STRING          reduce using rule 9 (read_exp -> READ .)
+    READ            reduce using rule 9 (read_exp -> READ .)
+    $end            reduce using rule 9 (read_exp -> READ .)
+    RPAREN          reduce using rule 9 (read_exp -> READ .)
+
+
+state 24
+
+    (7) exp -> exp exp .
+    (7) exp -> exp . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for READ resolved as shift
+    $end            reduce using rule 7 (exp -> exp exp .)
+    RPAREN          reduce using rule 7 (exp -> exp exp .)
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+  ! LPAREN          [ reduce using rule 7 (exp -> exp exp .) ]
+  ! NIL             [ reduce using rule 7 (exp -> exp exp .) ]
+  ! IDENTIFIER      [ reduce using rule 7 (exp -> exp exp .) ]
+  ! NUM             [ reduce using rule 7 (exp -> exp exp .) ]
+  ! TRUE            [ reduce using rule 7 (exp -> exp exp .) ]
+  ! FALSE           [ reduce using rule 7 (exp -> exp exp .) ]
+  ! STRING          [ reduce using rule 7 (exp -> exp exp .) ]
+  ! READ            [ reduce using rule 7 (exp -> exp exp .) ]
+
+    exp                            shift and go to state 24
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 25
+
+    (14) definition -> LPAREN DEFINE . identifier value_exp RPAREN
+    (15) definition -> LPAREN DEFINE . identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (13) identifier -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 18
+
+    identifier                     shift and go to state 46
+
+state 26
+
+    (36) function -> identifier .
+
+    LPAREN          reduce using rule 36 (function -> identifier .)
+    NIL             reduce using rule 36 (function -> identifier .)
+    IDENTIFIER      reduce using rule 36 (function -> identifier .)
+    NUM             reduce using rule 36 (function -> identifier .)
+    TRUE            reduce using rule 36 (function -> identifier .)
+    FALSE           reduce using rule 36 (function -> identifier .)
+    STRING          reduce using rule 36 (function -> identifier .)
+    READ            reduce using rule 36 (function -> identifier .)
+    RPAREN          reduce using rule 36 (function -> identifier .)
+
+
+state 27
+
+    (33) value_exp -> LPAREN operator . value_exp args RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 47
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    value_exp                      shift and go to state 48
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 49
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 28
+
+    (19) if_stmt -> LPAREN IF . log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> LPAREN IF . log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+    (35) func_exp -> . LPAREN function args RPAREN
+
+    LPAREN          shift and go to state 50
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 51
+    value                          shift and go to state 52
+    value_exp                      shift and go to state 53
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+    func_exp                       shift and go to state 10
+
+state 29
+
+    (23) log_exp -> LPAREN log_operator . log_exp log_args RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+    (35) func_exp -> . LPAREN function args RPAREN
+
+    LPAREN          shift and go to state 50
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 54
+    value                          shift and go to state 52
+    value_exp                      shift and go to state 53
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+    func_exp                       shift and go to state 10
+
+state 30
+
+    (8) print_exp -> LPAREN PRINT . exp RPAREN
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    exp                            shift and go to state 55
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 31
+
+    (35) func_exp -> LPAREN function . args RPAREN
+    (37) args -> . value_exp args
+    (38) args -> . value_exp
+    (39) args -> .
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          reduce using rule 39 (args -> .)
+    LPAREN          shift and go to state 47
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    args                           shift and go to state 56
+    value_exp                      shift and go to state 57
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 49
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 32
+
+    (51) list -> LPAREN CDR . identifier RPAREN
+    (52) list -> LPAREN CDR . list RPAREN
+    (13) identifier -> . IDENTIFIER
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+
+    IDENTIFIER      shift and go to state 18
+    LPAREN          shift and go to state 58
+    STRING          shift and go to state 22
+
+    identifier                     shift and go to state 59
+    list                           shift and go to state 60
+
+state 33
+
+    (53) list -> LPAREN CONS . args RPAREN
+    (37) args -> . value_exp args
+    (38) args -> . value_exp
+    (39) args -> .
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          reduce using rule 39 (args -> .)
+    LPAREN          shift and go to state 47
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    args                           shift and go to state 61
+    value_exp                      shift and go to state 57
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 49
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 34
+
+    (48) list_car -> LPAREN CAR . identifier RPAREN
+    (49) list_car -> LPAREN CAR . list RPAREN
+    (50) list_car -> LPAREN CAR . list_car RPAREN
+    (13) identifier -> . IDENTIFIER
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+
+    IDENTIFIER      shift and go to state 18
+    LPAREN          shift and go to state 62
+    STRING          shift and go to state 22
+
+    identifier                     shift and go to state 63
+    list                           shift and go to state 64
+    list_car                       shift and go to state 65
+
+state 35
+
+    (55) operator -> PLUS .
+
+    LPAREN          reduce using rule 55 (operator -> PLUS .)
+    NIL             reduce using rule 55 (operator -> PLUS .)
+    IDENTIFIER      reduce using rule 55 (operator -> PLUS .)
+    NUM             reduce using rule 55 (operator -> PLUS .)
+    TRUE            reduce using rule 55 (operator -> PLUS .)
+    FALSE           reduce using rule 55 (operator -> PLUS .)
+    STRING          reduce using rule 55 (operator -> PLUS .)
+    READ            reduce using rule 55 (operator -> PLUS .)
+
+
+state 36
+
+    (56) operator -> MINUS .
+
+    LPAREN          reduce using rule 56 (operator -> MINUS .)
+    NIL             reduce using rule 56 (operator -> MINUS .)
+    IDENTIFIER      reduce using rule 56 (operator -> MINUS .)
+    NUM             reduce using rule 56 (operator -> MINUS .)
+    TRUE            reduce using rule 56 (operator -> MINUS .)
+    FALSE           reduce using rule 56 (operator -> MINUS .)
+    STRING          reduce using rule 56 (operator -> MINUS .)
+    READ            reduce using rule 56 (operator -> MINUS .)
+
+
+state 37
+
+    (57) operator -> DIVIDE .
+
+    LPAREN          reduce using rule 57 (operator -> DIVIDE .)
+    NIL             reduce using rule 57 (operator -> DIVIDE .)
+    IDENTIFIER      reduce using rule 57 (operator -> DIVIDE .)
+    NUM             reduce using rule 57 (operator -> DIVIDE .)
+    TRUE            reduce using rule 57 (operator -> DIVIDE .)
+    FALSE           reduce using rule 57 (operator -> DIVIDE .)
+    STRING          reduce using rule 57 (operator -> DIVIDE .)
+    READ            reduce using rule 57 (operator -> DIVIDE .)
+
+
+state 38
+
+    (58) operator -> MULTIPLY .
+
+    LPAREN          reduce using rule 58 (operator -> MULTIPLY .)
+    NIL             reduce using rule 58 (operator -> MULTIPLY .)
+    IDENTIFIER      reduce using rule 58 (operator -> MULTIPLY .)
+    NUM             reduce using rule 58 (operator -> MULTIPLY .)
+    TRUE            reduce using rule 58 (operator -> MULTIPLY .)
+    FALSE           reduce using rule 58 (operator -> MULTIPLY .)
+    STRING          reduce using rule 58 (operator -> MULTIPLY .)
+    READ            reduce using rule 58 (operator -> MULTIPLY .)
+
+
+state 39
+
+    (59) operator -> MOD .
+
+    LPAREN          reduce using rule 59 (operator -> MOD .)
+    NIL             reduce using rule 59 (operator -> MOD .)
+    IDENTIFIER      reduce using rule 59 (operator -> MOD .)
+    NUM             reduce using rule 59 (operator -> MOD .)
+    TRUE            reduce using rule 59 (operator -> MOD .)
+    FALSE           reduce using rule 59 (operator -> MOD .)
+    STRING          reduce using rule 59 (operator -> MOD .)
+    READ            reduce using rule 59 (operator -> MOD .)
+
+
+state 40
+
+    (27) log_operator -> AND .
+
+    LPAREN          reduce using rule 27 (log_operator -> AND .)
+    NIL             reduce using rule 27 (log_operator -> AND .)
+    IDENTIFIER      reduce using rule 27 (log_operator -> AND .)
+    NUM             reduce using rule 27 (log_operator -> AND .)
+    TRUE            reduce using rule 27 (log_operator -> AND .)
+    FALSE           reduce using rule 27 (log_operator -> AND .)
+    STRING          reduce using rule 27 (log_operator -> AND .)
+    READ            reduce using rule 27 (log_operator -> AND .)
+
+
+state 41
+
+    (28) log_operator -> OR .
+
+    LPAREN          reduce using rule 28 (log_operator -> OR .)
+    NIL             reduce using rule 28 (log_operator -> OR .)
+    IDENTIFIER      reduce using rule 28 (log_operator -> OR .)
+    NUM             reduce using rule 28 (log_operator -> OR .)
+    TRUE            reduce using rule 28 (log_operator -> OR .)
+    FALSE           reduce using rule 28 (log_operator -> OR .)
+    STRING          reduce using rule 28 (log_operator -> OR .)
+    READ            reduce using rule 28 (log_operator -> OR .)
+
+
+state 42
+
+    (29) log_operator -> NOT .
+
+    LPAREN          reduce using rule 29 (log_operator -> NOT .)
+    NIL             reduce using rule 29 (log_operator -> NOT .)
+    IDENTIFIER      reduce using rule 29 (log_operator -> NOT .)
+    NUM             reduce using rule 29 (log_operator -> NOT .)
+    TRUE            reduce using rule 29 (log_operator -> NOT .)
+    FALSE           reduce using rule 29 (log_operator -> NOT .)
+    STRING          reduce using rule 29 (log_operator -> NOT .)
+    READ            reduce using rule 29 (log_operator -> NOT .)
+
+
+state 43
+
+    (30) log_operator -> EQUAL .
+
+    LPAREN          reduce using rule 30 (log_operator -> EQUAL .)
+    NIL             reduce using rule 30 (log_operator -> EQUAL .)
+    IDENTIFIER      reduce using rule 30 (log_operator -> EQUAL .)
+    NUM             reduce using rule 30 (log_operator -> EQUAL .)
+    TRUE            reduce using rule 30 (log_operator -> EQUAL .)
+    FALSE           reduce using rule 30 (log_operator -> EQUAL .)
+    STRING          reduce using rule 30 (log_operator -> EQUAL .)
+    READ            reduce using rule 30 (log_operator -> EQUAL .)
+
+
+state 44
+
+    (31) log_operator -> GT .
+
+    LPAREN          reduce using rule 31 (log_operator -> GT .)
+    NIL             reduce using rule 31 (log_operator -> GT .)
+    IDENTIFIER      reduce using rule 31 (log_operator -> GT .)
+    NUM             reduce using rule 31 (log_operator -> GT .)
+    TRUE            reduce using rule 31 (log_operator -> GT .)
+    FALSE           reduce using rule 31 (log_operator -> GT .)
+    STRING          reduce using rule 31 (log_operator -> GT .)
+    READ            reduce using rule 31 (log_operator -> GT .)
+
+
+state 45
+
+    (32) log_operator -> LT .
+
+    LPAREN          reduce using rule 32 (log_operator -> LT .)
+    NIL             reduce using rule 32 (log_operator -> LT .)
+    IDENTIFIER      reduce using rule 32 (log_operator -> LT .)
+    NUM             reduce using rule 32 (log_operator -> LT .)
+    TRUE            reduce using rule 32 (log_operator -> LT .)
+    FALSE           reduce using rule 32 (log_operator -> LT .)
+    STRING          reduce using rule 32 (log_operator -> LT .)
+    READ            reduce using rule 32 (log_operator -> LT .)
+
+
+state 46
+
+    (14) definition -> LPAREN DEFINE identifier . value_exp RPAREN
+    (15) definition -> LPAREN DEFINE identifier . LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 66
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    identifier                     shift and go to state 9
+    value_exp                      shift and go to state 67
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 49
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 47
+
+    (33) value_exp -> LPAREN . operator value_exp args RPAREN
+    (35) func_exp -> LPAREN . function args RPAREN
+    (51) list -> LPAREN . CDR identifier RPAREN
+    (52) list -> LPAREN . CDR list RPAREN
+    (53) list -> LPAREN . CONS args RPAREN
+    (48) list_car -> LPAREN . CAR identifier RPAREN
+    (49) list_car -> LPAREN . CAR list RPAREN
+    (50) list_car -> LPAREN . CAR list_car RPAREN
+    (55) operator -> . PLUS
+    (56) operator -> . MINUS
+    (57) operator -> . DIVIDE
+    (58) operator -> . MULTIPLY
+    (59) operator -> . MOD
+    (36) function -> . identifier
+    (13) identifier -> . IDENTIFIER
+
+    CDR             shift and go to state 32
+    CONS            shift and go to state 33
+    CAR             shift and go to state 34
+    PLUS            shift and go to state 35
+    MINUS           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MULTIPLY        shift and go to state 38
+    MOD             shift and go to state 39
+    IDENTIFIER      shift and go to state 18
+
+    operator                       shift and go to state 27
+    function                       shift and go to state 31
+    identifier                     shift and go to state 26
+
+state 48
+
+    (33) value_exp -> LPAREN operator value_exp . args RPAREN
+    (37) args -> . value_exp args
+    (38) args -> . value_exp
+    (39) args -> .
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          reduce using rule 39 (args -> .)
+    LPAREN          shift and go to state 47
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    value_exp                      shift and go to state 57
+    args                           shift and go to state 68
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 49
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 49
+
+    (40) value_exp -> value .
+
+    LPAREN          reduce using rule 40 (value_exp -> value .)
+    NIL             reduce using rule 40 (value_exp -> value .)
+    IDENTIFIER      reduce using rule 40 (value_exp -> value .)
+    NUM             reduce using rule 40 (value_exp -> value .)
+    TRUE            reduce using rule 40 (value_exp -> value .)
+    FALSE           reduce using rule 40 (value_exp -> value .)
+    STRING          reduce using rule 40 (value_exp -> value .)
+    READ            reduce using rule 40 (value_exp -> value .)
+    RPAREN          reduce using rule 40 (value_exp -> value .)
+
+
+state 50
+
+    (23) log_exp -> LPAREN . log_operator log_exp log_args RPAREN
+    (33) value_exp -> LPAREN . operator value_exp args RPAREN
+    (51) list -> LPAREN . CDR identifier RPAREN
+    (52) list -> LPAREN . CDR list RPAREN
+    (53) list -> LPAREN . CONS args RPAREN
+    (48) list_car -> LPAREN . CAR identifier RPAREN
+    (49) list_car -> LPAREN . CAR list RPAREN
+    (50) list_car -> LPAREN . CAR list_car RPAREN
+    (35) func_exp -> LPAREN . function args RPAREN
+    (27) log_operator -> . AND
+    (28) log_operator -> . OR
+    (29) log_operator -> . NOT
+    (30) log_operator -> . EQUAL
+    (31) log_operator -> . GT
+    (32) log_operator -> . LT
+    (55) operator -> . PLUS
+    (56) operator -> . MINUS
+    (57) operator -> . DIVIDE
+    (58) operator -> . MULTIPLY
+    (59) operator -> . MOD
+    (36) function -> . identifier
+    (13) identifier -> . IDENTIFIER
+
+    CDR             shift and go to state 32
+    CONS            shift and go to state 33
+    CAR             shift and go to state 34
+    AND             shift and go to state 40
+    OR              shift and go to state 41
+    NOT             shift and go to state 42
+    EQUAL           shift and go to state 43
+    GT              shift and go to state 44
+    LT              shift and go to state 45
+    PLUS            shift and go to state 35
+    MINUS           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MULTIPLY        shift and go to state 38
+    MOD             shift and go to state 39
+    IDENTIFIER      shift and go to state 18
+
+    log_operator                   shift and go to state 29
+    operator                       shift and go to state 27
+    identifier                     shift and go to state 26
+    function                       shift and go to state 31
+
+state 51
+
+    (19) if_stmt -> LPAREN IF log_exp . LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> LPAREN IF log_exp . LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+
+    LPAREN          shift and go to state 69
+
+
+state 52
+
+    (21) log_exp -> value .
+    (40) value_exp -> value .
+
+  ! reduce/reduce conflict for LPAREN resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for NIL resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for IDENTIFIER resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for NUM resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for TRUE resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for FALSE resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for STRING resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for READ resolved using rule 21 (log_exp -> value .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 21 (log_exp -> value .)
+    LPAREN          reduce using rule 21 (log_exp -> value .)
+    NIL             reduce using rule 21 (log_exp -> value .)
+    IDENTIFIER      reduce using rule 21 (log_exp -> value .)
+    NUM             reduce using rule 21 (log_exp -> value .)
+    TRUE            reduce using rule 21 (log_exp -> value .)
+    FALSE           reduce using rule 21 (log_exp -> value .)
+    STRING          reduce using rule 21 (log_exp -> value .)
+    READ            reduce using rule 21 (log_exp -> value .)
+    RPAREN          reduce using rule 21 (log_exp -> value .)
+
+  ! LPAREN          [ reduce using rule 40 (value_exp -> value .) ]
+  ! NIL             [ reduce using rule 40 (value_exp -> value .) ]
+  ! IDENTIFIER      [ reduce using rule 40 (value_exp -> value .) ]
+  ! NUM             [ reduce using rule 40 (value_exp -> value .) ]
+  ! TRUE            [ reduce using rule 40 (value_exp -> value .) ]
+  ! FALSE           [ reduce using rule 40 (value_exp -> value .) ]
+  ! STRING          [ reduce using rule 40 (value_exp -> value .) ]
+  ! READ            [ reduce using rule 40 (value_exp -> value .) ]
+  ! RPAREN          [ reduce using rule 40 (value_exp -> value .) ]
+
+
+state 53
+
+    (22) log_exp -> value_exp .
+
+    LPAREN          reduce using rule 22 (log_exp -> value_exp .)
+    NIL             reduce using rule 22 (log_exp -> value_exp .)
+    IDENTIFIER      reduce using rule 22 (log_exp -> value_exp .)
+    NUM             reduce using rule 22 (log_exp -> value_exp .)
+    TRUE            reduce using rule 22 (log_exp -> value_exp .)
+    FALSE           reduce using rule 22 (log_exp -> value_exp .)
+    STRING          reduce using rule 22 (log_exp -> value_exp .)
+    READ            reduce using rule 22 (log_exp -> value_exp .)
+    RPAREN          reduce using rule 22 (log_exp -> value_exp .)
+
+
+state 54
+
+    (23) log_exp -> LPAREN log_operator log_exp . log_args RPAREN
+    (24) log_args -> . log_exp log_args
+    (25) log_args -> . log_exp
+    (26) log_args -> .
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+    (35) func_exp -> . LPAREN function args RPAREN
+
+    RPAREN          reduce using rule 26 (log_args -> .)
+    LPAREN          shift and go to state 50
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 70
+    log_args                       shift and go to state 71
+    value                          shift and go to state 52
+    value_exp                      shift and go to state 53
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+    func_exp                       shift and go to state 10
+
+state 55
+
+    (8) print_exp -> LPAREN PRINT exp . RPAREN
+    (7) exp -> exp . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          shift and go to state 72
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    exp                            shift and go to state 24
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 56
+
+    (35) func_exp -> LPAREN function args . RPAREN
+
+    RPAREN          shift and go to state 73
+
+
+state 57
+
+    (37) args -> value_exp . args
+    (38) args -> value_exp .
+    (37) args -> . value_exp args
+    (38) args -> . value_exp
+    (39) args -> .
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+  ! reduce/reduce conflict for RPAREN resolved using rule 38 (args -> value_exp .)
+    RPAREN          reduce using rule 38 (args -> value_exp .)
+    LPAREN          shift and go to state 47
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+  ! RPAREN          [ reduce using rule 39 (args -> .) ]
+
+    value_exp                      shift and go to state 57
+    args                           shift and go to state 74
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 49
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 58
+
+    (51) list -> LPAREN . CDR identifier RPAREN
+    (52) list -> LPAREN . CDR list RPAREN
+    (53) list -> LPAREN . CONS args RPAREN
+
+    CDR             shift and go to state 32
+    CONS            shift and go to state 33
+
+
+state 59
+
+    (51) list -> LPAREN CDR identifier . RPAREN
+
+    RPAREN          shift and go to state 75
+
+
+state 60
+
+    (52) list -> LPAREN CDR list . RPAREN
+
+    RPAREN          shift and go to state 76
+
+
+state 61
+
+    (53) list -> LPAREN CONS args . RPAREN
+
+    RPAREN          shift and go to state 77
+
+
+state 62
+
+    (51) list -> LPAREN . CDR identifier RPAREN
+    (52) list -> LPAREN . CDR list RPAREN
+    (53) list -> LPAREN . CONS args RPAREN
+    (48) list_car -> LPAREN . CAR identifier RPAREN
+    (49) list_car -> LPAREN . CAR list RPAREN
+    (50) list_car -> LPAREN . CAR list_car RPAREN
+
+    CDR             shift and go to state 32
+    CONS            shift and go to state 33
+    CAR             shift and go to state 34
+
+
+state 63
+
+    (48) list_car -> LPAREN CAR identifier . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 64
+
+    (49) list_car -> LPAREN CAR list . RPAREN
+
+    RPAREN          shift and go to state 79
+
+
+state 65
+
+    (50) list_car -> LPAREN CAR list_car . RPAREN
+
+    RPAREN          shift and go to state 80
+
+
+state 66
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN . arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> LPAREN . operator value_exp args RPAREN
+    (35) func_exp -> LPAREN . function args RPAREN
+    (51) list -> LPAREN . CDR identifier RPAREN
+    (52) list -> LPAREN . CDR list RPAREN
+    (53) list -> LPAREN . CONS args RPAREN
+    (48) list_car -> LPAREN . CAR identifier RPAREN
+    (49) list_car -> LPAREN . CAR list RPAREN
+    (50) list_car -> LPAREN . CAR list_car RPAREN
+    (16) arguments -> . declaration arguments
+    (17) arguments -> .
+    (55) operator -> . PLUS
+    (56) operator -> . MINUS
+    (57) operator -> . DIVIDE
+    (58) operator -> . MULTIPLY
+    (59) operator -> . MOD
+    (36) function -> . identifier
+    (18) declaration -> . identifier
+    (13) identifier -> . IDENTIFIER
+
+    CDR             shift and go to state 32
+    CONS            shift and go to state 33
+    CAR             shift and go to state 34
+    RPAREN          reduce using rule 17 (arguments -> .)
+    PLUS            shift and go to state 35
+    MINUS           shift and go to state 36
+    DIVIDE          shift and go to state 37
+    MULTIPLY        shift and go to state 38
+    MOD             shift and go to state 39
+    IDENTIFIER      shift and go to state 18
+
+    identifier                     shift and go to state 81
+    arguments                      shift and go to state 82
+    operator                       shift and go to state 27
+    function                       shift and go to state 31
+    declaration                    shift and go to state 83
+
+state 67
+
+    (14) definition -> LPAREN DEFINE identifier value_exp . RPAREN
+
+    RPAREN          shift and go to state 84
+
+
+state 68
+
+    (33) value_exp -> LPAREN operator value_exp args . RPAREN
+
+    RPAREN          shift and go to state 85
+
+
+state 69
+
+    (19) if_stmt -> LPAREN IF log_exp LPAREN . exp RPAREN RPAREN
+    (20) if_stmt -> LPAREN IF log_exp LPAREN . exp RPAREN LPAREN exp RPAREN RPAREN
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 6
+    exp                            shift and go to state 86
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 70
+
+    (24) log_args -> log_exp . log_args
+    (25) log_args -> log_exp .
+    (24) log_args -> . log_exp log_args
+    (25) log_args -> . log_exp
+    (26) log_args -> .
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+    (35) func_exp -> . LPAREN function args RPAREN
+
+  ! reduce/reduce conflict for RPAREN resolved using rule 25 (log_args -> log_exp .)
+    RPAREN          reduce using rule 25 (log_args -> log_exp .)
+    LPAREN          shift and go to state 50
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+  ! RPAREN          [ reduce using rule 26 (log_args -> .) ]
+
+    log_exp                        shift and go to state 70
+    log_args                       shift and go to state 87
+    value                          shift and go to state 52
+    value_exp                      shift and go to state 53
+    identifier                     shift and go to state 9
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+    func_exp                       shift and go to state 10
+
+state 71
+
+    (23) log_exp -> LPAREN log_operator log_exp log_args . RPAREN
+
+    RPAREN          shift and go to state 88
+
+
+state 72
+
+    (8) print_exp -> LPAREN PRINT exp RPAREN .
+
+    LPAREN          reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    NIL             reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    IDENTIFIER      reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    NUM             reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    TRUE            reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    FALSE           reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    STRING          reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    READ            reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    $end            reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+    RPAREN          reduce using rule 8 (print_exp -> LPAREN PRINT exp RPAREN .)
+
+
+state 73
+
+    (35) func_exp -> LPAREN function args RPAREN .
+
+    LPAREN          reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    NIL             reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    IDENTIFIER      reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    NUM             reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    TRUE            reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    FALSE           reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    STRING          reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    READ            reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    $end            reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+    RPAREN          reduce using rule 35 (func_exp -> LPAREN function args RPAREN .)
+
+
+state 74
+
+    (37) args -> value_exp args .
+
+    RPAREN          reduce using rule 37 (args -> value_exp args .)
+
+
+state 75
+
+    (51) list -> LPAREN CDR identifier RPAREN .
+
+    LPAREN          reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    NIL             reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    IDENTIFIER      reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    NUM             reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    TRUE            reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    FALSE           reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    STRING          reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    READ            reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    $end            reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+    RPAREN          reduce using rule 51 (list -> LPAREN CDR identifier RPAREN .)
+
+
+state 76
+
+    (52) list -> LPAREN CDR list RPAREN .
+
+    LPAREN          reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    NIL             reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    IDENTIFIER      reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    NUM             reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    TRUE            reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    FALSE           reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    STRING          reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    READ            reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    $end            reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+    RPAREN          reduce using rule 52 (list -> LPAREN CDR list RPAREN .)
+
+
+state 77
+
+    (53) list -> LPAREN CONS args RPAREN .
+
+    LPAREN          reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    NIL             reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    IDENTIFIER      reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    NUM             reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    TRUE            reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    FALSE           reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    STRING          reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    READ            reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    $end            reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+    RPAREN          reduce using rule 53 (list -> LPAREN CONS args RPAREN .)
+
+
+state 78
+
+    (48) list_car -> LPAREN CAR identifier RPAREN .
+
+    LPAREN          reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    NIL             reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    IDENTIFIER      reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    NUM             reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    TRUE            reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    FALSE           reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    STRING          reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    READ            reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    $end            reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+    RPAREN          reduce using rule 48 (list_car -> LPAREN CAR identifier RPAREN .)
+
+
+state 79
+
+    (49) list_car -> LPAREN CAR list RPAREN .
+
+    LPAREN          reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    NIL             reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    IDENTIFIER      reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    NUM             reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    TRUE            reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    FALSE           reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    STRING          reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    READ            reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    $end            reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+    RPAREN          reduce using rule 49 (list_car -> LPAREN CAR list RPAREN .)
+
+
+state 80
+
+    (50) list_car -> LPAREN CAR list_car RPAREN .
+
+    LPAREN          reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    NIL             reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    IDENTIFIER      reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    NUM             reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    TRUE            reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    FALSE           reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    STRING          reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    READ            reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    $end            reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+    RPAREN          reduce using rule 50 (list_car -> LPAREN CAR list_car RPAREN .)
+
+
+state 81
+
+    (36) function -> identifier .
+    (18) declaration -> identifier .
+
+  ! reduce/reduce conflict for IDENTIFIER resolved using rule 18 (declaration -> identifier .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 18 (declaration -> identifier .)
+    LPAREN          reduce using rule 36 (function -> identifier .)
+    NIL             reduce using rule 36 (function -> identifier .)
+    NUM             reduce using rule 36 (function -> identifier .)
+    TRUE            reduce using rule 36 (function -> identifier .)
+    FALSE           reduce using rule 36 (function -> identifier .)
+    STRING          reduce using rule 36 (function -> identifier .)
+    READ            reduce using rule 36 (function -> identifier .)
+    IDENTIFIER      reduce using rule 18 (declaration -> identifier .)
+    RPAREN          reduce using rule 18 (declaration -> identifier .)
+
+  ! IDENTIFIER      [ reduce using rule 36 (function -> identifier .) ]
+  ! RPAREN          [ reduce using rule 36 (function -> identifier .) ]
+
+
+state 82
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN arguments . RPAREN LPAREN exp RPAREN RPAREN
+
+    RPAREN          shift and go to state 89
+
+
+state 83
+
+    (16) arguments -> declaration . arguments
+    (16) arguments -> . declaration arguments
+    (17) arguments -> .
+    (18) declaration -> . identifier
+    (13) identifier -> . IDENTIFIER
+
+    RPAREN          reduce using rule 17 (arguments -> .)
+    IDENTIFIER      shift and go to state 18
+
+    declaration                    shift and go to state 83
+    arguments                      shift and go to state 90
+    identifier                     shift and go to state 91
+
+state 84
+
+    (14) definition -> LPAREN DEFINE identifier value_exp RPAREN .
+
+    LPAREN          reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    NIL             reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    IDENTIFIER      reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    NUM             reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    TRUE            reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    FALSE           reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    STRING          reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    READ            reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    $end            reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+    RPAREN          reduce using rule 14 (definition -> LPAREN DEFINE identifier value_exp RPAREN .)
+
+
+state 85
+
+    (33) value_exp -> LPAREN operator value_exp args RPAREN .
+
+    LPAREN          reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    NIL             reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    IDENTIFIER      reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    NUM             reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    TRUE            reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    FALSE           reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    STRING          reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    READ            reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    $end            reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+    RPAREN          reduce using rule 33 (value_exp -> LPAREN operator value_exp args RPAREN .)
+
+
+state 86
+
+    (19) if_stmt -> LPAREN IF log_exp LPAREN exp . RPAREN RPAREN
+    (20) if_stmt -> LPAREN IF log_exp LPAREN exp . RPAREN LPAREN exp RPAREN RPAREN
+    (7) exp -> exp . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          shift and go to state 92
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 6
+    exp                            shift and go to state 24
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 87
+
+    (24) log_args -> log_exp log_args .
+
+    RPAREN          reduce using rule 24 (log_args -> log_exp log_args .)
+
+
+state 88
+
+    (23) log_exp -> LPAREN log_operator log_exp log_args RPAREN .
+
+    LPAREN          reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    NIL             reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    IDENTIFIER      reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    NUM             reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    TRUE            reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    FALSE           reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    STRING          reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    READ            reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    $end            reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+    RPAREN          reduce using rule 23 (log_exp -> LPAREN log_operator log_exp log_args RPAREN .)
+
+
+state 89
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN . LPAREN exp RPAREN RPAREN
+
+    LPAREN          shift and go to state 93
+
+
+state 90
+
+    (16) arguments -> declaration arguments .
+
+    RPAREN          reduce using rule 16 (arguments -> declaration arguments .)
+
+
+state 91
+
+    (18) declaration -> identifier .
+
+    IDENTIFIER      reduce using rule 18 (declaration -> identifier .)
+    RPAREN          reduce using rule 18 (declaration -> identifier .)
+
+
+state 92
+
+    (19) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN . RPAREN
+    (20) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN . LPAREN exp RPAREN RPAREN
+
+    RPAREN          shift and go to state 95
+    LPAREN          shift and go to state 94
+
+
+state 93
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN . exp RPAREN RPAREN
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    identifier                     shift and go to state 9
+    exp                            shift and go to state 96
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 94
+
+    (20) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN . exp RPAREN RPAREN
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 6
+    exp                            shift and go to state 97
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 95
+
+    (19) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .
+
+    LPAREN          reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    NIL             reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    IDENTIFIER      reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    NUM             reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    TRUE            reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    FALSE           reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    STRING          reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    READ            reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    $end            reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+    RPAREN          reduce using rule 19 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN RPAREN .)
+
+
+state 96
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp . RPAREN RPAREN
+    (7) exp -> exp . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          shift and go to state 98
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    identifier                     shift and go to state 9
+    exp                            shift and go to state 24
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    log_exp                        shift and go to state 6
+    print_exp                      shift and go to state 7
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 97
+
+    (20) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp . RPAREN RPAREN
+    (7) exp -> exp . exp
+    (2) exp -> . definition
+    (3) exp -> . value_exp
+    (4) exp -> . if_stmt
+    (5) exp -> . log_exp
+    (6) exp -> . print_exp
+    (7) exp -> . exp exp
+    (14) definition -> . LPAREN DEFINE identifier value_exp RPAREN
+    (15) definition -> . LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN
+    (33) value_exp -> . LPAREN operator value_exp args RPAREN
+    (34) value_exp -> . func_exp
+    (40) value_exp -> . value
+    (19) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN RPAREN
+    (20) if_stmt -> . LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN
+    (21) log_exp -> . value
+    (22) log_exp -> . value_exp
+    (23) log_exp -> . LPAREN log_operator log_exp log_args RPAREN
+    (8) print_exp -> . LPAREN PRINT exp RPAREN
+    (35) func_exp -> . LPAREN function args RPAREN
+    (41) value -> . identifier
+    (42) value -> . NIL
+    (43) value -> . number
+    (44) value -> . log_val
+    (45) value -> . list
+    (46) value -> . list_car
+    (47) value -> . read_exp
+    (13) identifier -> . IDENTIFIER
+    (10) number -> . NUM
+    (11) log_val -> . TRUE
+    (12) log_val -> . FALSE
+    (51) list -> . LPAREN CDR identifier RPAREN
+    (52) list -> . LPAREN CDR list RPAREN
+    (53) list -> . LPAREN CONS args RPAREN
+    (54) list -> . STRING
+    (48) list_car -> . LPAREN CAR identifier RPAREN
+    (49) list_car -> . LPAREN CAR list RPAREN
+    (50) list_car -> . LPAREN CAR list_car RPAREN
+    (9) read_exp -> . READ
+
+    RPAREN          shift and go to state 99
+    LPAREN          shift and go to state 8
+    NIL             shift and go to state 12
+    IDENTIFIER      shift and go to state 18
+    NUM             shift and go to state 19
+    TRUE            shift and go to state 20
+    FALSE           shift and go to state 21
+    STRING          shift and go to state 22
+    READ            shift and go to state 23
+
+    log_exp                        shift and go to state 6
+    exp                            shift and go to state 24
+    definition                     shift and go to state 3
+    value_exp                      shift and go to state 4
+    if_stmt                        shift and go to state 5
+    print_exp                      shift and go to state 7
+    identifier                     shift and go to state 9
+    func_exp                       shift and go to state 10
+    value                          shift and go to state 11
+    number                         shift and go to state 13
+    log_val                        shift and go to state 14
+    list                           shift and go to state 15
+    list_car                       shift and go to state 16
+    read_exp                       shift and go to state 17
+
+state 98
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN . RPAREN
+
+    RPAREN          shift and go to state 100
+
+
+state 99
+
+    (20) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN . RPAREN
+
+    RPAREN          shift and go to state 101
+
+
+state 100
+
+    (15) definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .
+
+    LPAREN          reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    NIL             reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    IDENTIFIER      reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    NUM             reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    TRUE            reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    FALSE           reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    STRING          reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    READ            reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    $end            reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+    RPAREN          reduce using rule 15 (definition -> LPAREN DEFINE identifier LPAREN arguments RPAREN LPAREN exp RPAREN RPAREN .)
+
+
+state 101
+
+    (20) if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .
+
+    LPAREN          reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    NIL             reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    IDENTIFIER      reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    NUM             reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    TRUE            reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    FALSE           reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    STRING          reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    READ            reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    $end            reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+    RPAREN          reduce using rule 20 (if_stmt -> LPAREN IF log_exp LPAREN exp RPAREN LPAREN exp RPAREN RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LPAREN in state 24 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 24 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 24 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 24 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 24 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 24 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 24 resolved as shift
+WARNING: shift/reduce conflict for READ in state 24 resolved as shift
+WARNING: reduce/reduce conflict in state 4 resolved using rule (exp -> value_exp)
+WARNING: rejected rule (log_exp -> value_exp) in state 4
+WARNING: reduce/reduce conflict in state 11 resolved using rule (log_exp -> value)
+WARNING: rejected rule (value_exp -> value) in state 11
+WARNING: reduce/reduce conflict in state 52 resolved using rule (log_exp -> value)
+WARNING: rejected rule (value_exp -> value) in state 52
+WARNING: reduce/reduce conflict in state 57 resolved using rule (args -> value_exp)
+WARNING: rejected rule (args -> <empty>) in state 57
+WARNING: reduce/reduce conflict in state 70 resolved using rule (log_args -> log_exp)
+WARNING: rejected rule (log_args -> <empty>) in state 70
+WARNING: reduce/reduce conflict in state 81 resolved using rule (declaration -> identifier)
+WARNING: rejected rule (function -> identifier) in state 81
